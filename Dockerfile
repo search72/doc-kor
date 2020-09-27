@@ -1,6 +1,6 @@
-FROM ubuntu:14.04
+FROM ubuntu:latest
 RUN apt-get update
-RUN apt-get install apache2 -y
-ADD ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/bin/bash","/entrypoint.sh"]
+RUN apt-get install -y -g nginx
+COPY index.html /var/www/html/
+EXPOSE 80
+CMD ["nginx","-g","daemon off;"]
